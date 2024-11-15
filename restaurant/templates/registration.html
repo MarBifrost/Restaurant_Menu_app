@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form method="POST" action="{% url 'accounts:register' %}">
+        {% csrf_token %}
+        <div class="registration">
+            {{form.username.label}}: {{form.username}}
+            {{form.email.label}}: {{ form.email }}
+            {{form.password1.label}}: {{form.password1}}
+            {{form.password2.label}}: {{form.password2}}
+            <button type="submit">რეგისტრაცია</button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

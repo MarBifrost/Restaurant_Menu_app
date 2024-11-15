@@ -49,4 +49,5 @@ class Ingredients(models.Model):
     dishes= models.ForeignKey(Dishes, on_delete=models.CASCADE, related_name='ingredients')
     def __str__(self):
         return self.name
+    
 

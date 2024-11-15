@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'restaurantapp.apps.RestaurantappConfig',
     'accounts.apps.AccountsConfig',
     'mptt',
+
 ]
 
 MIDDLEWARE = [
@@ -52,12 +53,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'restaurant.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
