@@ -1,27 +1,15 @@
-from django.shortcuts import render, redirect
-from .forms import RegistrationForm, ProfileForm
-from django.views import View
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from django.contrib.auth import login, authenticate
-from django.contrib import messages
+from .serializers import RegistrationSerializer
 
 
 
-class Register(View):
+class RegisterView(APIView):
     def post(self, request, *args, **kwargs):
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            messages.success(request, _("რეგისტრაცია წარმატებულია!"))
-            # return redirect('accounts:profile')
-        else:
-            messages.error(request, form.errors)
-        form = RegistrationForm()
-        return render(request, 'registration.html', {'form': form})
-
-
-    def get(self, request):
-        form = RegistrationForm()
-        return render(request, 'registration.html', {'form': form})
-
+        serializer = RegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
