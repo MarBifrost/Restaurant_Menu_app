@@ -26,7 +26,7 @@ class DishesSerializer(serializers.ModelSerializer):
     ingredients=IngredientSerializer(many=True)
     class Meta:
         model = Dishes
-        fields = ('id', 'name','photo', 'ingredients')
+        fields = ('id', 'name','dishes_photo', 'ingredients')
 
 class SubCategoriesDetailsSerializer(serializers.ModelSerializer):
     dishes=DishesSerializer(many=True)

@@ -39,16 +39,12 @@ class MenuSubCategoryListView(APIView):
 
 class SubCategoryDetailView(APIView):
     def get(self, request, subcategory_id):
-        # Optional filter by dish name
-        dish_name = request.query_params.get('dish_name', None)
+        dish_name = request.query_params.get('dishes_name', None)
 
-        # Retrieve the subcategory
         subcategory = get_object_or_404(MenuSubCategory, id=subcategory_id)
 
-        # Filter dishes by name if provided
         if dish_name:
             subcategory.dishes = subcategory.dishes.filter(name__icontains=dish_name)
 
-        # Serialize the data
         serializer = SubCategoriesDetailsSerializer(subcategory)
         return Response(serializer.data, status=status.HTTP_200_OK)
