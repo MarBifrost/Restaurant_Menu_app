@@ -39,7 +39,7 @@ class Dishes(models.Model):
     name=models.CharField(max_length=50)
     dishes_photo=models.ImageField(upload_to='restaurant_photos/')
     price=models.IntegerField()
-    menu_sub_category=models.ForeignKey(MenuSubCategory, on_delete=models.CASCADE, related_name='sub_categories')
+    menu_sub_category=models.ForeignKey(MenuSubCategory, on_delete=models.CASCADE, related_name='dishes')
 
     def __str__(self):
         return self.name
